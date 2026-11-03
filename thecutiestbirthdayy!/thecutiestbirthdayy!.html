@@ -1,0 +1,386 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/flowers.png" type="image/x-icon">
+    <title>foryou</title>
+
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+        @import url('https://fonts.googleapis.com/css?family=Amatic+SC');
+
+        body {
+            font-family: 'Indie Flower', cursive !important;
+            background: #f092be;
+
+            margin: 0px;
+            padding: 0px;
+        }
+
+        ::selection {
+            background: transparent;
+        }
+
+        h4 {
+            font-size: 30px;
+            line-height: 1px;
+            font-family: 'Amatic SC', cursive !important;
+        }
+
+        .color1 {
+            color: #47d4fffc;
+        }
+
+        .color2 {
+            color: #db1644;
+
+        }
+
+        .card {
+            color: #013243;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 400px;
+            background: #e0e1dc;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) perspective(2000px);
+            box-shadow: inset 400px 0 50px rgba(0, 0, 0, .5), 20px 0 60px rgba(0, 0, 0, .5);
+            transition: 2s;
+        }
+
+        .card:hover {
+            transform: translate(-50%, -50%) perspective(2000px) rotate(15deg) scale(1.2);
+            box-shadow: inset 20px 0 50px rgba(0, 0, 0, .5), 0 10px 100px rgba(0, 0, 0, .5);
+        }
+
+        .card:before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: #BAC1BA;
+            transform-origin: bottom;
+            transform: skewX(-45deg);
+        }
+
+        .card:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -5px;
+            width: 5px;
+            height: 100%;
+            background: #92A29C;
+            transform-origin: left;
+            transform: skewY(-45deg);
+        }
+
+        .card .imgBox {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-origin: left;
+            transition: .7s;
+        }
+
+        .card .bark {
+            position: absolute;
+            background: #e0e1dc;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: .7s;
+        }
+
+        .card .imgBox img {
+            min-width: 250px;
+            max-height: 400px;
+        }
+
+        .card:hover .imgBox {
+            transform: rotateY(-135deg);
+        }
+
+        .card:hover .bark {
+            opacity: 1;
+            transition: .6s;
+            box-shadow: 300px 200px 100px rgba(0, 0, 0, .4) inset;
+        }
+
+        .card .details {
+            position: absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            padding: 0 0 0 10px;
+            z-index: -1;
+            margin-top: 40px;
+        }
+
+        .card .details p {
+            font-size: 15px;
+            line-height: 5px;
+            transform: rotate(-10deg);
+            padding: 0 0 0 20px;
+        }
+
+        .card .details h4 {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .card {
+            width: 380px;
+            height: 650px;
+        }
+
+        .card .imgBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card .details {
+            width: 100%;
+            max-height: 600px;
+            overflow-y: auto;
+            padding: 10px 15px;
+            margin-top: 20px;
+            box-sizing: border-box;
+        }
+
+        .card .details p {
+            font-size: 13px;
+            line-height: 18px;
+            transform: rotate(-5deg);
+            padding: 0 0 0 15px;
+            margin: 8px 0;
+        }
+
+        @media screen and (max-width: 450px) {
+            .card {
+                width: 300px;
+                height: 600px;
+            }
+
+            .card .details {
+                max-height: 550px;
+            }
+
+            .card .details p {
+                font-size: 12px;
+                line-height: 17px;
+            }
+        }
+
+        .card {
+            width: 320px;
+            height: 430px;
+            background: #fff8f6;
+            border-radius: 5px;
+            box-shadow:
+                0 15px 35px rgba(80, 30, 50, 0.25),
+                inset 0 0 15px rgba(255, 255, 255, 0.7);
+            transition: 1s ease;
+        }
+
+        .card:hover {
+            transform: translate(-50%, -50%) perspective(2000px) rotate(8deg) scale(1.05);
+            box-shadow: 0 20px 45px rgba(80, 30, 50, 0.3);
+        }
+
+        .card:before {
+            background: #f5c5d5;
+        }
+
+        .card:after {
+            background: #e9a8bf;
+        }
+
+        .card .imgBox {
+            border-radius: 5px;
+            overflow: hidden;
+            background: #fff8f6;
+        }
+
+        .card .imgBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card .bark {
+            background: #fff8f6;
+        }
+
+        .card .details {
+            width: 100%;
+            height: 430px;
+            max-height: 430px;
+            box-sizing: border-box;
+            padding: 15px 12px;
+            margin-top: 0;
+            overflow-y: auto;
+            background: #fff8f6;
+            border-radius: 5px;
+        }
+
+        .card .details h4 {
+            text-align: center;
+            font-size: 25px;
+            line-height: 1.2;
+            margin: 12px 0;
+        }
+
+        .card .details p {
+            font-size: 12px;
+            line-height: 17px;
+            transform: rotate(-3deg);
+            padding-left: 10px;
+            margin: 8px 0;
+        }
+
+        .card .details::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .card .details::-webkit-scrollbar-thumb {
+            background: #e99ab9;
+            border-radius: 10px;
+        }
+
+        .card .details::-webkit-scrollbar-track {
+            background: #fff0f4;
+        }
+
+        @media screen and (max-width: 450px) {
+            .card {
+                width: 290px;
+                height: 400px;
+            }
+
+            .card .details {
+                height: 400px;
+                max-height: 400px;
+            }
+        }
+    </style>
+
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.prinsh.com/NathanPrinsley-textstyle/nprinsh-stext.css" />
+
+</head>
+
+<body>
+
+    <div class="card" onclick="putarMusik()">
+
+        <div class="imgBox">
+
+            <div class="bark"></div>
+
+            <img src="https://assets.cardly.net/production/artwork/8/9/8/898e1f13-0dfa-6d62-664e-070005c2f046/detail/cute-happy-birthday-dog-p1-r2.webp"
+                width="100%" height="100%">
+
+        </div>
+
+        <div class="details">
+
+            <h4 class="color1">Happy Birthday</h4>
+
+            <h4 class="color2 margin">To My Cutiest Girl!</h4>
+
+            <p>Happy birthdayy ciaa!!</p>
+            <p>Today is your day,</p>
+            <p>i just wanna say thank you very much for</p>
+            <p>all the experience</p>
+            <p>and interactions we've been through,</p>
+            <p>i'm so glad to know u,</p>
+            <p>i hope u'll always have a beautiful day.</p>
+            <p>Don't forget about ur health,</p>
+            <p>please stay healthy and happy.</p>
+            <p>I hope that in this new chapter of your life</p>
+            <p>and in all the years to come,</p>
+            <p>God will always be on your side.</p>
+            <p>I hope you get to achieve and fulfill all your dreams,</p>
+            <p>as well as everything you've been working so hard for</p>
+            <p>and wishing for.</p>
+            <p>I don't like seeing you sad,</p>
+            <p>so i hope your special day is just as incredible as you are!</p>
+            <p>Always be a strong girl,</p>
+            <p>because i'm always here for you.</p>
+            <p>I wish nothing but the best for you,</p>
+            <p>and my prayers for you will always remain the same,</p>
+            <p>whether it's your birthday or just an ordinary day..</p>
+            <p>there's no difference,</p>
+            <p>because you will always be special in my life.</p>
+            <p>As long as i'm alive,</p>
+            <p>you'll never have to worry about losing someone</p>
+            <p>who feels incredibly lucky to have you,</p>
+            <p>appreciates every achievement of yours,</p>
+            <p>will always support and love youuu.</p>
+            <p>Once againnn..</p>
+            <p>happy birthday to you my sweetest girl!!!</p>
+
+            <p>Last but not least...</p>
+            <p>I love you more than anything</p>
+            <p>I love you more than words can tell</p>
+            <p>I love you 300</p>
+            <p>I love you so much</p>
+            <p>I love you the most</p>
+            <p>I love you endlessly</p>
+            <p>I love you always and forever</p>
+            <p>I love you to the moon and back</p>
+            <p>I love you to infinity and beyond</p>
+            <p>I love you from the bottom of my heart</p>
+            <p>I love you until the scientist finds the end of the universe</p>
+            <p>I love you more than i've ever loved</p>
+            <p>I love you every second</p>
+            <p>I love you every minute</p>
+            <p>I love you every hours</p>
+            <p>I love you everyday</p>
+            <p>I have so much of you in my heart.</p>
+
+            <p class="text-right">-mi amor!</p>
+            <p class="text-right"></p>
+
+        </div>
+
+    </div>
+
+    <audio id="musik" loop>
+        <source src="./musik_love.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var audio = document.getElementById("musik");
+        var card = document.querySelector(".card");
+
+        card.addEventListener("click", function() {
+            audio.play().then(function() {
+                console.log("Musik berhasil diputar!");
+            }).catch(function(error) {
+                console.log("Musik gagal diputar:", error);
+            });
+        });
+    </script>
+
+    <audio controls loop>
+        <source src="./musik_love.mp3" type="audio/mpeg">
+        Browser kamu tidak mendukung audio.
+    </audio>
+
+</body>
+
+</html>
